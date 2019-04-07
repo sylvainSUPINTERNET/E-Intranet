@@ -1,0 +1,52 @@
+<!--  ATTENTION TIMLEAF UTILISE XHTML (respecter la notation XML balise FERMER a chaque fois) -->
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!-- inject le prefix thymeleaf --> <!-- toute attributs debutant par th c'est gerer par thymeleaf -->
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+	<link rel="stylesheet" th:href="@{/css/custom.css}"/>
+    <title>Intranet | index</title>
+  </head>
+  <body>
+	
+	
+	<div class="container">
+		<h3 class="text-left mt-5" >Inscrire un étudiant</h3>
+	<form th:action="@{save}" th:object="${etudiant}" method="post" enctype="multipart/form-data"> <!--  on bind l'object Etudiant a notre form et remove propriété name pour remplacer par th:field du bind -->
+	  <div class="form-group">
+	    <label for="nom">Nom</label>
+	    <input type="text" class="form-control" id="nom" th:field="*{nom}"/> <!--  on peut aussi ecrire ${etudiant.nom} ca fonction -->
+		  <span class="text-danger" role="alert" th:errors="*{nom}"></span>
+	  </div>
+	  	  <div class="form-group">
+	    <label for="dateDeNaissance">Date de naissance</label>
+	    <input type="date" class="form-control" th:field="*{dateNaissance}" id="dateDeNaissance"/>
+	    <span class="text-danger" th:errors="*{dateNaissance}"></span>
+	  </div>
+	  <div class="form-group">
+	    <label for="email">Email</label>
+	    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" th:field="*{email}"/>	   
+	    <span class="text-danger" th:errors="*{email}"></span>
+	  </div>
+	  	  <div class="form-group">
+	    <label for="photo">Photo</label>
+	    <input type="file" class="form-control" id="photo" name="pictureFile"/> <!-- On utilise pas th:field CAR on veut pas que dispatcherServlet nous mettre la photo dans notre object etudiant puisque photo est une string pas un file, on veut le matcher avec file -->
+	    <span class="text-danger" th:errors="*{photo}"></span>
+	  </div>
+	  <div class="text-right">
+	  	  <button type="submit" class="btn btn-success btn-lg">Ajouter</button>
+	  </div>
+	</form>
+	</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

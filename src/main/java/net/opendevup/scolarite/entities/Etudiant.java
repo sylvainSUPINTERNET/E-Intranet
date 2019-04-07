@@ -7,6 +7,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 @Entity // on indique à Spring de se connecter au dataSource pour voir si une table correspond à notre class ici
@@ -18,9 +23,14 @@ public class Etudiant implements Serializable {
 	private Long id;
 	
 	@Column(name="NOM", length=30)
+	@NotEmpty // annotation de validation
+	@Size(min=2, max=30) // on peut rajouter , message="my message" MAIS il faudra revoir l'internationalisation
 	private String nom;
 	
+	@DateTimeFormat(pattern="yyyy-MM-dd") // va servir quand on travail avec des formulaire sinon quand il va mapper il va donner une exception (pas oublier dans le controller mettre @Valid pour que le dispatcherServlet valide les données qu'il a recu
 	private Date dateNaissance;
+	@NotEmpty
+	@Email
 	private String email;
 	private String photo;
 	

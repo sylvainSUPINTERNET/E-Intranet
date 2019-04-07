@@ -35,6 +35,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		
+		<!--  A COMMENTER EN PROD -->
+		<!--  DEVTOOLS va desactiver les caches de toutes les librairies, a ne pas mettre en prod pour eviter les problèmes de performances -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+		</dependency>
+		<!--  A COMMENTER EN PROD -->
 
 		<dependency>
 			<groupId>mysql</groupId>
